@@ -1,0 +1,13 @@
+Use Wireshark to view packets sent. Capture for `udp.port == 53`.
+
+Use dig to make request for `dig @8.8.8.8 -p 53 www.google.com`.
+
+You can see www.google.com embedded in the sent packet. You can see it
+in the reply.
+
+Where's the IP address? Examine the DIG output. And then convert to
+hex like so:
+
+    printf '%x\n' 172
+
+You can also see this in wireshark.
