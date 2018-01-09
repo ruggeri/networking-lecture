@@ -1,0 +1,25 @@
+dig www.google.com => 172.217.9.4
+
+nc 172.217.9.4 80
+
+REQUEST
+=======
+GET / HTTP/1.1
+Host: www.google.com
+
+RESPONSE
+========
+HTTP/1.1 200 OK
+Date: Tue, 09 Jan 2018 23:15:22 GMT
+Expires: -1
+Cache-Control: private, max-age=0
+Content-Type: text/html; charset=ISO-8859-1
+P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+Server: gws
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+Set-Cookie: 1P_JAR=2018-01-09-23; expires=Thu, 08-Feb-2018 23:15:22 GMT; path=/; domain=.google.com
+Set-Cookie: NID=121=PFtHN5a_S1EPCpQ2O6UId9jdKimtZWd6Hq9yNxC3L3ksiY0EOfzyNIbmAfdVzWHc9qhhl6-laPCjdeQ8VpuevkTLh1w3G0FOS_kMX1DJ3YSIk9dM3BsuxCR_GlxYQY5e; expires=Wed, 11-Jul-2018 23:15:22 GMT; path=/; domain=.google.com; HttpOnly
+Accept-Ranges: none
+Vary: Accept-Encoding
+Transfer-Encoding: chunked
