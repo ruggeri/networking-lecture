@@ -12,10 +12,11 @@ socket = UDPSocket.new
 
 # You can give me wahtever port you like.
 socket.bind('127.0.0.1', 0)
-puts "Address: #{socket.addr}"
+puts "My address: #{socket.addr}"
 
 t1 = Thread.new do
   while true
+    # Receive messages to this port. Print them out.
     msg = socket.recvfrom(255)
     p msg
   end
@@ -23,6 +24,7 @@ end
 
 t2 = Thread.new do
   while true
+    # Whenever user writes something, send it to the target.
     input = gets.chomp
     socket.send(input, 0, target_host, target_port)
   end

@@ -12,6 +12,7 @@ server = TCPServer.new('127.0.0.1', 9999)
 
 def handle_client(client_socket)
   while true
+    # Read in every message of the client, and just echo it back.
     client_message = client_socket.gets
     puts "#{client_socket.peeraddr}: #{client_message}"
     client_socket.puts(client_message)
@@ -23,7 +24,7 @@ accepter_thread = Thread.new do
     # socket.accept says: wait until the operating has connected a
     # client.
     #
-    # Even though we create a new socket for each client that
+    # Even though we create a new socket object for each client that
     # connects, that does not mean we need a new port for every
     # client. There is no confusion if many clients talk to the same
     # port 9999; the OS knows the port number of the client, and

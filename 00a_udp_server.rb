@@ -13,7 +13,8 @@ socket = UDPSocket.new
 socket.bind('127.0.0.1', 9999)
 
 while true
-  # Read up to 255 bytes from the file stream.
+  # Read up to 255 bytes from the socket. Waits for 255 bytes or a
+  # newline.
   msg = socket.recvfrom(255)
   p msg
 
