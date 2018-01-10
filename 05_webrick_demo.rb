@@ -1,9 +1,10 @@
 require 'webrick'
 
+# Build a WEBrick server object. It is not yet listening though.
 server = WEBrick::HTTPServer.new("Port": 9999)
 
 server.mount_proc('/markov') do |req, res|
-  # here is what we do for each request and response.
+  # here is what we do for each request and response to /markov.
 
   res.status = 200
   res['Content-Type'] = 'text/html'
@@ -11,7 +12,7 @@ server.mount_proc('/markov') do |req, res|
 end
 
 server.mount_proc('/curie') do |req, res|
-  # here is what we do for each request and response.
+  # here is what we do for each request and response /curie.
 
   res.status = 200
   res['Content-Type'] = 'text/html'
@@ -19,6 +20,8 @@ server.mount_proc('/curie') do |req, res|
 end
 
 server.mount_proc('/counter') do |req, res|
+  # This code shows how you can access and set cookies using WEBrick.
+
   p req.cookies
   if req.cookies.empty?
     count = 0
@@ -35,4 +38,5 @@ server.mount_proc('/counter') do |req, res|
   res.body = "<p>Your count is #{count}</p>"
 end
 
+# Listen for connections forever.
 server.start

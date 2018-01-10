@@ -1,25 +1,18 @@
 require 'socket'
 
-# Creates a server object. This asks the operating system to listen
-# for TCP connections on port 9999.
+# Start listening for TCP connections.
 server = TCPServer.new('127.0.0.1', 9999)
-
-def handle_client(client_socket)
-  while true
-    client_message = client_socket.gets
-    puts "#{client_socket.peeraddr}: #{client_message}"
-    client_socket.puts(client_message)
-  end
-end
 
 while true
   client_socket = server.accept
   puts "Connected new client: #{client_socket.peeraddr}"
 
+  # Just ignore whatever HTTP request is sent.
   while (msg = client_socket.gets.chomp) != ""
     puts "IGNORING: #{msg}"
   end
 
+  # Print out the same thing every time.
   client_socket.puts "HTTP/1.1 200 OK"
   client_socket.puts "Content-Type: text/html"
   client_socket.puts ""
